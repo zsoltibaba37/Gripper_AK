@@ -154,6 +154,8 @@ void loop() {
   
   delay(1);
 }
+// ----------------- END LOOP -------------------
+
 
 void openClose() {
   while (LockState == false) {
@@ -235,24 +237,25 @@ void serialComm() {
     }
 
   }
-  // go home
-  if (!digitalRead(home_switch) && goHomeState == false) {
-    Serial.println("Now Gripper is Go to Home Position...");
-    goHomeState = true;
-  }
-
-  while (goHomeState == true) {
-    stepper.setMaxSpeed(MaxTraSpeed);
-    stepper.setAcceleration(TraAccSpeed);
-    stepper.setSpeed(travelSpeed);
-    stepper.moveTo(0);
-    stepper.runSpeedToPosition();
-    if ((stepper.distanceToGo() == 0)) {
-      Serial.println("");
-      Serial.println("Gripper is at Home Position!");
-      Serial.println("");
-      writeMess();
-      goHomeState = false;
-    }
-  }
+  
+  // go home when press home_switch
+//  if (!digitalRead(home_switch) && goHomeState == false) {
+//    Serial.println("Now Gripper is Go to Home Position...");
+//    goHomeState = true;
+//  }
+//
+//  while (goHomeState == true) {
+//    stepper.setMaxSpeed(MaxTraSpeed);
+//    stepper.setAcceleration(TraAccSpeed);
+//    stepper.setSpeed(travelSpeed);
+//    stepper.moveTo(0);
+//    stepper.runSpeedToPosition();
+//    if ((stepper.distanceToGo() == 0)) {
+//      Serial.println("");
+//      Serial.println("Gripper is at Home Position!");
+//      Serial.println("");
+//      writeMess();
+//      goHomeState = false;
+//    }
+//  }
 }
